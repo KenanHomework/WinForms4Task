@@ -18,6 +18,16 @@ namespace WinForms4
             InitializeComponent();
             CenterToScreen();
         }
+
+        public ProductViewer(Product product)
+        {
+            InitializeComponent();
+            CenterToScreen();
+            this.product = product;
+            tbx_country.Text = product.Country;
+            tbx_name.Text = product.Name;
+            mtbx_coast.Text = product.Cost.ToString();
+        }
         public Product product = new Product();
 
         public bool CName = false;
@@ -51,7 +61,7 @@ namespace WinForms4
 
         public void CheckTexBox(ref MaskedTextBox tbx, ref Label lbl, ref bool control)
         {
-            if (tbx.Text.Length > 2)
+            if (tbx.Text.Length > 0)
             {
                 control = true;
                 lbl.ForeColor = Color.Black;
@@ -110,5 +120,10 @@ namespace WinForms4
                     => CheckTexBox(ref mtbx_coast, ref lbl_coast, ref CCost);
 
         private void btn_cancel_Click(object sender, EventArgs e) => DialogResult = DialogResult.Cancel;
+
+        private void ProductViewer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
